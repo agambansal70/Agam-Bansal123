@@ -312,7 +312,7 @@ h3 {
 .avatar-photo {
   position: absolute;
   inset: 0;
-  background-image: url("images/profile.jpg");
+  background-image: url("agam.jpg");
   background-size: cover;
   background-position: center 20%; /* your photo is a tall portrait, so this keeps your face in the circle */
 }
