@@ -1,202 +1,719 @@
-/* --- Global Reset & Variables --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth;
+/* =========================================================
+   Agam Bansal: Portfolio
+   Theme: sticker sheet. Thick outlines, hard offset shadows,
+   flat bright colours on lavender.
+   ========================================================= */
+
+/* ---------- 1. Design tokens (CSS variables) ---------- */
+:root {
+  --bg: #cbbaff;       /* lavender page */
+  --ink: #15110f;      /* outlines and text */
+  --white: #ffffff;
+  --tomato: #ff5a36;
+  --lime: #b9f24b;
+  --sky: #5cc8ff;
+  --sun: #ffd23f;
+
+  --border: 3px solid var(--ink);
+  --shadow: 6px 6px 0 var(--ink);
+  --shadow-hover: 10px 10px 0 var(--ink);
+
+  --font-display: "Archivo Black", "Arial Black", Impact, sans-serif;
+  --font-body: "Work Sans", "Segoe UI", system-ui, sans-serif;
+
+  --max-width: 1080px;
 }
 
-:root {
-    --bg-color: #042008;
-    --card-bg: #02610b;
-    --neon-pink: #37cda7;
-    --neon-glow: rgba(255, 0, 127, 0.6);
-    --text-white: #ffffff;
-    --text-gray: #a5a5b0;
+/* ---------- 2. Reset and base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px; /* keeps titles clear of the sticky navbar */
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-white);
-    overflow-x: hidden;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
 }
 
-/* --- Navigation Bar --- */
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400; /* Archivo Black is already heavy */
+  line-height: 1.05;
+}
+
+:focus-visible {
+  outline: 4px solid var(--tomato);
+  outline-offset: 3px;
+}
+
+/* ---------- 3. Navbar (Flexbox + sticky) ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--sun);
+  border-bottom: var(--border);
+}
+
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 8%;
-    background: rgba(11, 11, 14, 0.8);
-    backdrop-filter: blur(10px);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 100;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: 1px;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
 }
 
-.logo span {
-    color: var(--neon-pink);
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.navbar nav a {
-    color: var(--text-white);
-    text-decoration: none;
-    margin-left: 2rem;
-    font-weight: 400;
-    transition: 0.3s ease;
+.nav-links a {
+  display: block;
+  padding: 6px 14px;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.navbar nav a:hover {
-    color: var(--neon-pink);
-    text-shadow: 0 0 10px var(--neon-glow);
+.nav-links a:hover {
+  background: var(--white);
+  border-color: var(--ink);
 }
 
-/* --- Hero Section --- */
-.hero-section {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 8%;
-    gap: 2rem;
+.nav-links .nav-cta {
+  background: var(--ink);
+  color: var(--sun);
 }
 
-.hero-content {
-    max-width: 600px;
+.nav-links .nav-cta:hover {
+  background: var(--tomato);
+  color: var(--ink);
 }
 
-.hero-content h3 {
-    font-size: 1.2rem;
-    color: var(--text-gray);
-    font-weight: 400;
-    margin-bottom: 0.5rem;
+/* ---------- 4. Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 12px 26px;
+  border: var(--border);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.hero-content h1 {
-    font-size: 4rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
 }
 
-/* Neon Glow Effect */
-.neon-text {
-    color: var(--text-white);
-    text-shadow: 0 0 10px var(--neon-glow), 0 0 30px var(--neon-glow);
+.btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--ink);
 }
 
-.hero-content p {
-    color: var(--text-gray);
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
+.btn-dark  { background: var(--ink);   color: var(--white); }
+.btn-light { background: var(--white); color: var(--ink); }
+
+/* ---------- 5. Hero (Flexbox) ---------- */
+.hero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 72px 24px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
 }
 
-/* --- CSS Typing Animation --- */
-.typing-animation {
-    font-size: 1.5rem;
-    color: var(--neon-pink);
-    font-weight: 600;
-    margin-bottom: 1rem;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 3px solid var(--neon-pink);
-    width: 100%;
-    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+.hero-text {
+  flex: 1; /* takes all the space the window doesn't need */
 }
 
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
+.sticker {
+  display: inline-block;
+  padding: 6px 16px;
+  margin-bottom: 20px;
+  border: var(--border);
+  border-radius: 999px;
+  font-weight: 600;
+  transform: rotate(-3deg);
+  box-shadow: 3px 3px 0 var(--ink);
 }
 
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: var(--neon-pink); }
+.sticker-lime { background: var(--lime); }
+
+.hero h1 {
+  font-size: clamp(3.4rem, 10vw, 6.8rem);
+  letter-spacing: -0.02em;
+  text-shadow: 5px 5px 0 var(--white);
 }
 
-/* --- Neon Button --- */
-.btn-neon {
-    display: inline-block;
-    padding: 0.8rem 2.2rem;
-    color: var(--neon-pink);
-    border: 2px solid var(--neon-pink);
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 4px;
-    transition: 0.4s ease;
-    box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
+.hero-intro {
+  max-width: 44ch;
+  margin: 24px 0 32px;
+  font-size: 1.15rem;
 }
 
-.btn-neon:hover {
-    background: var(--neon-pink);
-    color: var(--bg-color);
-    box-shadow: 0 0 25px var(--neon-pink);
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
-/* --- Image & Ambient Shadow Animations --- */
-.hero-image-wrapper {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* ---------- 6. Floating code window ---------- */
+.window {
+  flex-shrink: 0;
+  width: 320px;
+  background: var(--ink);
+  border: var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  animation: float 4s ease-in-out infinite;
 }
 
-.image-glow-effect {
-    position: relative;
-    width: 320px;
-    height: 320px;
-    border-radius: 50%;
-    padding: 5px;
-    background: linear-gradient(45deg, var(--neon-pink), #ff00ff);
-    animation: float 4s ease-in-out infinite;
-    box-shadow: 0 0 30px var(--neon-glow);
+.window-bar {
+  display: flex;
+  gap: 8px;
+  padding: 12px 14px;
+  background: var(--white);
+  border-bottom: var(--border);
 }
 
-.profile-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid var(--bg-color);
-    background: var(--card-bg);
+.window-bar span {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
 }
 
-/* Subtle Floating Animation */
+.window-bar span:nth-child(1) { background: var(--tomato); }
+.window-bar span:nth-child(2) { background: var(--sun); }
+.window-bar span:nth-child(3) { background: var(--lime); }
+
+.window-code {
+  padding: 20px;
+  font-family: "Courier New", monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--lime);
+  overflow-x: auto;
+}
+
 @keyframes float {
-    0% {
-        transform: translateY(0px);
-        box-shadow: 0 0 30px var(--neon-glow);
-    }
-    50% {
-        transform: translateY(-15px);
-        box-shadow: 0 0 45px rgba(255, 0, 127, 0.9);
-    }
-    100% {
-        transform: translateY(0px);
-        box-shadow: 0 0 30px var(--neon-glow);
-    }
+  0%, 100% { transform: translateY(0) rotate(2deg); }
+  50%      { transform: translateY(-14px) rotate(-1deg); }
 }
 
-/* --- Responsive Adjustments --- */
-@media (max-width: 968px) {
-    .hero-section {
-        flex-direction: column-reverse;
-        justify-content: center;
-        text-align: center;
-        padding-top: 8rem;
-    }
-    .typing-animation {
-        font-size: 1.2rem;
-    }
-    .hero-content h1 {
-        font-size: 3rem;
-    }
+/* ---------- 7. Skills marquee (keyframe animation) ---------- */
+.marquee {
+  overflow: hidden;
+  background: var(--ink);
+  border-top: var(--border);
+  border-bottom: var(--border);
+  transform: rotate(-1.2deg);
+  margin: 0 -20px;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 24s linear infinite;
+}
+
+.marquee-track span {
+  padding: 14px 32px;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--sun);
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); } /* the list is duplicated, so -50% loops seamlessly */
+}
+
+/* ---------- 8. Shared section styles ---------- */
+.section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+.section h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 40px;
+}
+
+/* ---------- 9. About (Grid) ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+/* Placeholder avatar. To use a photo, see the README. */
+.avatar {
+  width: 220px;
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--tomato);
+  border: var(--border);
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+  font-family: var(--font-display);
+  font-size: 4rem;
+  position: relative;   /* so the photo layer can sit on top of the initials */
+  overflow: hidden;     /* clips the photo to the circle */
+  transform: rotate(-4deg);
+}
+
+/* The photo covers the initials. If the file is missing, nothing is drawn
+   and the initials stay visible. */
+.avatar-photo {
+  position: absolute;
+  inset: 0;
+  background-image: url("images/profile.jpg");
+  background-size: cover;
+  background-position: center 20%; /* your photo is a tall portrait, so this keeps your face in the circle */
+}
+
+.about-text {
+  max-width: 60ch;
+  padding: 28px;
+  background: var(--white);
+  border: var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.about-text p + p {
+  margin-top: 16px;
+}
+
+/* ---------- 10. Skills bento (Grid) ---------- */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.tile {
+  padding: 24px;
+  border: var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tile:hover {
+  transform: translate(-3px, -3px) rotate(-0.5deg);
+  box-shadow: var(--shadow-hover);
+}
+
+.tile h3 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.tile-html {
+  grid-column: span 2;
+  grid-row: span 2;
+  background: var(--tomato);
+}
+
+.tile-html h3 {
+  font-size: clamp(3rem, 8vw, 5rem);
+}
+
+.tile-css   { background: var(--lime); }
+.tile-flex  { background: var(--sky); }
+.tile-grid  { background: var(--sun); }
+.tile-git   { background: var(--white); }
+
+.tile-resp {
+  grid-column: span 2;
+  background: var(--sky);
+}
+
+.tile-next {
+  grid-column: span 2;
+  background: transparent;
+  border-style: dashed; /* dashed = not finished yet */
+  box-shadow: none;
+}
+
+/* ---------- 11. Projects (Grid + Flexbox) ---------- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.project-body {
+  flex: 1; /* body fills the card so links sit at the bottom */
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+}
+
+.project-body h3 {
+  font-size: 1.35rem;
+  margin-bottom: 10px;
+}
+
+.project-body p {
+  margin-bottom: 16px;
+  font-size: 0.98rem;
+}
+
+.project-body code {
+  padding: 1px 6px;
+  background: var(--sun);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.tags li {
+  padding: 2px 12px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.project-links {
+  display: flex;
+  gap: 18px;
+  margin-top: auto; /* pushes the links to the bottom of the card */
+}
+
+.link {
+  font-weight: 600;
+  border-bottom: 3px solid var(--ink);
+  transition: background-color 0.15s ease;
+}
+
+.link:hover {
+  background: var(--sun);
+}
+
+/* Thumbnails: little drawings made only with CSS */
+.thumb {
+  height: 150px;
+  padding: 22px;
+  display: flex;
+  border-bottom: var(--border);
+}
+
+.thumb-a { background: var(--lime); }
+.thumb-b { background: var(--sky); }
+.thumb-c { background: var(--sun); }
+
+.thumb span {
+  background: var(--white);
+  border: var(--border);
+  border-radius: 8px;
+}
+
+.thumb-flex {
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.thumb-flex span { flex: 1; height: 50%; }
+.thumb-flex span:nth-child(2) { height: 100%; background: var(--tomato); }
+.thumb-flex span:nth-child(3) { height: 70%; }
+
+.thumb-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+}
+
+.thumb-grid span:nth-child(1) { grid-row: 1 / 3; background: var(--sun); }
+
+.thumb-anim {
+  justify-content: center;
+  align-items: center;
+}
+
+.thumb-anim span {
+  width: 60px;
+  height: 60px;
+  background: var(--tomato);
+  animation: spin 3s ease-in-out infinite;
+}
+
+@keyframes spin {
+  0%, 100% { transform: rotate(0deg) scale(1); border-radius: 8px; }
+  50%      { transform: rotate(180deg) scale(1.3); border-radius: 50%; }
+}
+
+/* ---------- 12. Journey ---------- */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.steps li {
+  padding: 24px;
+  border: var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.steps li:nth-child(1) { background: var(--white); }
+.steps li:nth-child(2) { background: var(--lime); }
+.steps li:nth-child(3) { background: var(--sun); border-style: dashed; box-shadow: none; }
+
+.steps h3 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+/* ---------- 13. Contact ---------- */
+.contact-box {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 40px;
+  padding: 40px;
+  background: var(--tomato);
+  border: var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.contact-info h2 {
+  margin-bottom: 20px;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.contact-links a {
+  display: inline-block;
+  padding: 6px 18px;
+  background: var(--white);
+  border: var(--border);
+  border-radius: 999px;
+  font-weight: 600;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.contact-links a:hover {
+  background: var(--sun);
+  transform: rotate(-3deg);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 24px;
+  background: var(--white);
+  border: var(--border);
+  border-radius: 16px;
+}
+
+.contact-form label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  font: inherit;
+  border: var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  background: var(--sun);
+}
+
+.contact-form .btn {
+  align-self: flex-start;
+  margin-top: 6px;
+}
+
+/* ---------- 14. Footer ---------- */
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 28px 24px;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 0.95rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a:hover {
+  color: var(--sun);
+}
+
+/* ---------- 15. Responsive design (media queries) ---------- */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tile-html {
+    grid-row: span 1; /* no tall tile on narrower screens */
+  }
+
+  .projects-grid,
+  .steps {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-box {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .navbar {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero {
+    flex-direction: column;
+    padding-top: 48px;
+    gap: 48px;
+  }
+
+  .window {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .bento,
+  .projects-grid,
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .tile-html,
+  .tile-resp,
+  .tile-next {
+    grid-column: span 1;
+  }
+
+  .contact-box {
+    padding: 24px;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Respect people who turn animations off in their system settings */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
